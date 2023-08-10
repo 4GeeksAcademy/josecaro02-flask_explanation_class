@@ -1,0 +1,42 @@
+Version Postgres
+- psql --Version
+
+Ingresar a la base de datos
+
+//                  opcional  db name     username
+- psql -h localhost -p 5432 example -U gitpod
+
+Lista tablas en la base de datos
+- \dt
+
+Describir un tabla
+- \d
+
+Start Project
+- pipenv run start
+
+GET all users 
+- User.query.all()  -   SELECT * FROM user;
+    Serializar cada uno de los elementos de la Lista
+    - users_serialized = list(map(lambda x: x.serialize(), users))
+
+- User.query.get(id) -  SELECT * FROM user WHERE ID = id (Solamente trae un elemento)
+
+- User.query.filter_by(email = 'email@email.co') - SELECT * FROM user WHERE email = 'email@email.co'
+
+POST
+  -  new_user = User(email = body['email'], password = body['password'], is_active = True)
+  -  db.session.add(new_user)
+  -  db.session.commit()
+
+PUT
+   - single_planet = Planet.query.get(body['id'])
+   - single_planet.name = body['name']
+   - db.session.commit()
+
+DELETE
+    - db.session.delete(single_planet)
+    - db.session.commit()
+
+Raise Exception
+- raise APIException("mensaje", status_code=200)
